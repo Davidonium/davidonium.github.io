@@ -4,14 +4,31 @@
   
   <url>
     <loc>http://davidonium.github.io/</loc>
+    <lastmod>2020-12-11T20:51:38+02:00</lastmod>
   </url>
   
   <url>
-    <loc>http://davidonium.github.io/categories/</loc>
+    <loc>http://davidonium.github.io/blog/</loc>
+    <lastmod>2020-12-11T20:51:38+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://davidonium.github.io/tags/misc/</loc>
+    <lastmod>2020-12-11T20:51:38+02:00</lastmod>
   </url>
   
   <url>
     <loc>http://davidonium.github.io/tags/</loc>
+    <lastmod>2020-12-11T20:51:38+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://davidonium.github.io/blog/why/</loc>
+    <lastmod>2020-12-11T20:51:38+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://davidonium.github.io/categories/</loc>
   </url>
   
 </urlset>
