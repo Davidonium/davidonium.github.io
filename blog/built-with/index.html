@@ -27,7 +27,7 @@ so in order to revert those I created an empty file under <code>assets/scss/_git
 }
 </code></pre></div><p>The final step for code highlighting to work is to add this in the <code>config.toml</code>:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-toml data-lang=toml>[<span style=color:#a6e22e>markup</span>]
   [<span style=color:#a6e22e>markup</span>.<span style=color:#a6e22e>highlight</span>]
-    <span style=color:#a6e22e>codeFences</span> = <span style=color:#66d9ef>true</span> <span style=color:#75715e># since the plugin disables this, it needs to be forced to true</span>
+    <span style=color:#a6e22e>codeFences</span> = <span style=color:#66d9ef>true</span> <span style=color:#75715e># since the theme disables this, it needs to be forced to true</span>
     <span style=color:#a6e22e>style</span> = <span style=color:#e6db74>&#34;monokai&#34;</span> <span style=color:#75715e># this is the theme I like but any can be chosen</span>
 </code></pre></div><h2 id=deployment>Deployment<a class=anchor href=#deployment>#</a></h2><p>The deployment is done using <a href=https://docs.github.com/en/actions target=_blank rel="noreferrer noopener">github actions</a>
 . Since as I mentioned, the site is hosted under github pages, what felt
