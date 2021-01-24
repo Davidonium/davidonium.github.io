@@ -1,0 +1,74 @@
+<!doctype html><html lang=en-us><head><title>Built With | Davidonium Tech Blog</title><meta charset=utf-8><meta name=language content="en"><meta name=description content="I explain how is this website built and the technologies used"><meta name=keywords content="hugo ,builtwith"><meta name=viewport content="width=device-width,initial-scale=1"><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=twitter:card content="summary"><meta name=twitter:title content="Built With"><meta name=twitter:description content="I explain how is this website built and the technologies used"><meta name=twitter:site content="https://twitter.com/davidonium"><meta name=twitter:creator content="https://twitter.com/davidonium"><link rel="shortcut icon" type=image/png href=/favicon.ico><link type=text/css rel=stylesheet href=/css/post.min.f1da2ef8a3c321942ead6a53657a7afd5aefa610302bf420660ffb62dc49b6fe.css integrity="sha256-8dou+KPDIZQurWpTZXp6/VrvphAwK/QgZg/7YtxJtv4="><link type=text/css rel=stylesheet href=/css/custom.min.fb660996d7ed8efb75497cea73aaaab421a388c52947407ca5ad95b415abb55e.css integrity="sha256-+2YJltftjvt1SXzqc6qqtCGjiMUpR0B8pa2VtBWrtV4="><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/davidonium.github.io\/"},"articleSection":"blog","name":"Built With","headline":"Built With","description":"I explain how is this website built and the technologies used","inLanguage":"en-US","author":"","creator":"","publisher":"","accountablePerson":"","copyrightHolder":"","copyrightYear":"2021","datePublished":"2021-01-23 22:10:51 \u002b0100 \u002b0100","dateModified":"2021-01-23 22:10:51 \u002b0100 \u002b0100","url":"http:\/\/davidonium.github.io\/blog\/built-with\/","wordCount":"894","keywords":["hugo","builtwith","Blog"]}</script></head><body><div class=burger__container><div class=burger aria-controls=navigation aria-label=Menu><div class="burger__meat burger__meat--1"></div><div class="burger__meat burger__meat--2"></div><div class="burger__meat burger__meat--3"></div></div></div><nav class=nav id=navigation><ul class=nav__list><li><a class=active href=/blog/>blog</a></li><li><a href=/>home</a></li></ul></nav><main><div class=flex-wrapper><div class=post__container><div class=post><header class=post__header><h1 id=post__title>Built With</h1><time datetime="2021-01-23 22:10:51 +0100 +0100" class=post__date>Jan 23 2021</time></header><article class=post__content><h2 id=why-dont-you-just-use-mediumcom-or-devto>Why don&rsquo;t you just use medium.com or dev.to?<a class=anchor href=#why-dont-you-just-use-mediumcom-or-devto>#</a></h2><p>It is true that using an already existing platform would allow the blog posts to be seen more easily, but I wanted to build
+this using the least amount of javascript code and no cookies (so I can skip having to use those shitty pop ups asking
+to accept them) for maximum pleasure of the reader.</p><p>Medium has some annoying dialogs (that one that magically lists my
+google accounts comes to mind) and even limits the reading of some articles behind paywall, I do not agree with the use
+of those &ldquo;features&rdquo; (which is understandable for them to use, a man has to eat), so I avoid the website to the best of my efforts.</p><p>Then there&rsquo;s also <a href=https://dev.to/,>https://dev.to/,</a> a website that doesn&rsquo;t have such i-need-to-be-profitable features and I actually like,
+but maybe the obsessive side in me kicks in. I want to have my own website that I can control and add or remove features as I see fit.</p><h2 id=start-already-plz>Start already plz<a class=anchor href=#start-already-plz>#</a></h2><p>Alright, after justifying myself just above, here&rsquo;s what I actually used to build this.</p><p>This website is built using <a href=https://gohugo.io/ target=_blank rel="noreferrer noopener">hugo</a>
+. Hugo is a static website generator that I think most of the average reader
+of this blog will already know about, but in case you don&rsquo;t know about it, I will explain how the site is built.</p><p>Specifically I use <a href=https://themes.gohugo.io/hugo-theme-codex/ target=_blank rel="noreferrer noopener">codex theme</a>
+which I find to be fitting for a
+simple website and has a pleasing to read font.</p><p>For the hosting of the site I used <a href=https://pages.github.com/ target=_blank rel="noreferrer noopener">github pages</a>
+, which includes SSL and a fancy subdomain with my github user free of charge (for now).</p><h2 id=customizations>Customizations<a class=anchor href=#customizations>#</a></h2><p>The default codex theme is pretty and all, but I am a picky bastard and don&rsquo;t like some things about it.</p><p>The first think I don&rsquo;t like is the code highlighting. It uses <a href=https://prismjs.com/>https://prismjs.com/</a> with a github lookalike theme.
+I like it aesthetically, but I want the website to download the least amount of javascript as possible, as this is just
+a blog with text to be read.</p><p>This is the culprit that downloads the library <a href=https://github.com/jakewies/hugo-theme-codex/blob/master/layouts/_default/single.html#L41>https://github.com/jakewies/hugo-theme-codex/blob/master/layouts/_default/single.html#L41</a>.</p><p>In order to override this I had to create my own <code>layouts/_defaults/single.html</code> and blatantly copypaste the previous code
+removing the part that downloads the script.</p><p>After removing that part, there are more changes required, when using the regular hugo code syntax highlighting the font
+of the code is black, that happens because there are styles loaded from this file: <a href=https://github.com/jakewies/hugo-theme-codex/blob/master/assets/scss/partials/_github-syntax-highlighting.scss>https://github.com/jakewies/hugo-theme-codex/blob/master/assets/scss/partials/_github-syntax-highlighting.scss</a>
+so in order to revert those I created an empty file under <code>assets/scss/_github-syntax-highlighting.scss</code>.</p><p>The second thing I didn&rsquo;t like was this purple secondary color so I overrode it like so (I got to use code highlighting yay!):</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-scss data-lang=scss><span style=color:#a6e22e>.fancy</span> {
+  <span style=color:#f92672>color</span><span style=color:#a6e22e>:</span> #bcbcbc;
+}
+
+<span style=color:#a6e22e>.tag__link</span> {
+  <span style=color:#f92672>color</span><span style=color:#a6e22e>:</span> #8b8b8b;
+  <span style=color:#f92672>background-color</span><span style=color:#a6e22e>:</span> #f2f2f2;
+  <span style=color:#66d9ef>&amp;</span><span style=color:#a6e22e>:hover</span> {
+    <span style=color:#f92672>background</span><span style=color:#a6e22e>:</span> #e0e0e0;
+  }
+}
+</code></pre></div><p>The final step for code highlighting to work is to add this in the <code>config.toml</code>:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-toml data-lang=toml>[<span style=color:#a6e22e>markup</span>]
+  [<span style=color:#a6e22e>markup</span>.<span style=color:#a6e22e>highlight</span>]
+    <span style=color:#a6e22e>codeFences</span> = <span style=color:#66d9ef>true</span> <span style=color:#75715e># since the plugin disables this, it needs to be forced to true</span>
+    <span style=color:#a6e22e>style</span> = <span style=color:#e6db74>&#34;monokai&#34;</span> <span style=color:#75715e># this is the theme I like but any can be chosen</span>
+</code></pre></div><h2 id=deployment>Deployment<a class=anchor href=#deployment>#</a></h2><p>The deployment is done using <a href=https://docs.github.com/en/actions target=_blank rel="noreferrer noopener">github actions</a>
+. Since as I mentioned, the site is hosted under github pages, what felt
+the most straight forward was using github actions.</p><p>There are actions already done for everything regarding deployment of github pages, so I will just share the workflow placed under
+<code>.github/workflows/main.yml</code>:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#f92672>name</span>: <span style=color:#ae81ff>CI</span>
+<span style=color:#f92672>on</span>:
+  <span style=color:#f92672>push</span>:
+    <span style=color:#f92672>branches</span>:
+      - <span style=color:#ae81ff>main</span>
+<span style=color:#f92672>jobs</span>:
+  <span style=color:#f92672>deploy</span>:
+    <span style=color:#f92672>runs-on</span>: <span style=color:#ae81ff>ubuntu-20.04</span>
+    <span style=color:#f92672>steps</span>:
+      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Git checkout</span>
+        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/checkout@v2</span>
+
+      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Update theme</span>
+        <span style=color:#f92672>run</span>: <span style=color:#ae81ff>git submodule update --init --recursive</span>
+
+      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Setup hugo</span>
+        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>peaceiris/actions-hugo@v2</span>
+        <span style=color:#f92672>with</span>:
+          <span style=color:#f92672>hugo-version</span>: <span style=color:#e6db74>&#34;0.75.1&#34;</span>
+          <span style=color:#f92672>extended</span>: <span style=color:#66d9ef>true</span> <span style=color:#75715e># required for hugo-theme-codex</span>
+
+      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Build</span>
+        <span style=color:#f92672>run</span>: <span style=color:#ae81ff>hugo -t hugo-theme-codex --minify</span>
+
+      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Deploy</span>
+        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>peaceiris/actions-gh-pages@v3</span>
+        <span style=color:#f92672>with</span>:
+          <span style=color:#f92672>personal_token</span>: <span style=color:#ae81ff>${{ secrets.TOKEN }} # trickiest part of the deployment</span>
+          <span style=color:#f92672>external_repository</span>: <span style=color:#ae81ff>Davidonium/davidonium.github.io</span>
+          <span style=color:#f92672>publish_dir</span>: <span style=color:#ae81ff>./public</span>
+          <span style=color:#f92672>user_name</span>: <span style=color:#e6db74>&#34;github-actions[bot]&#34;</span>
+          <span style=color:#f92672>user_email</span>: <span style=color:#e6db74>&#34;github-actions[bot]@users.noreply.github.com&#34;</span>
+          <span style=color:#f92672>publish_branch</span>: <span style=color:#ae81ff>main</span>
+</code></pre></div><p>As can be parsed reading the file, the site is built on each push to the <code>main</code> branch.
+The tricky part of the deployment is that there are 2 repositories, one for github pages <a href=https://github.com/Davidonium/davidonium.github.io target=_blank rel="noreferrer noopener">here</a>
+and another where the source code is located (right now private) where the github action resides.</p><p>In order for the github action to be able to commit / push into the other repository a personal access token needs to be
+created in the UI (under Profile popup -> Settings -> Developer Settings -> Personal Access Tokens) and then added into the repository
+with the github actions, under repository page -> Settings -> Secrets with the <code>TOKEN</code> key and the access token as value.</p><p>I mostly followed these pages:</p><ul><li><a href=https://gohugo.io/hosting-and-deployment/hosting-on-github/>https://gohugo.io/hosting-and-deployment/hosting-on-github/</a></li><li><a href=https://github.com/peaceiris/actions-gh-pages>https://github.com/peaceiris/actions-gh-pages</a></li></ul><h2 id=final-words>Final words<a class=anchor href=#final-words>#</a></h2><p>Hopefully this post will help someone get started creating their own website and made the deployment to github pages
+using github actions easier to understand.</p><p>I want to thank the creators of both hugo and codex theme for making creating a self hosted static website so fast and easy.
+Also many thanks to the creators of those github actions, they save a lot of hours to make websites deployable.</p><p><em>The source code of the blog is not open source because I feel embarrassed about my drafts but I may open source it in the future.</em></p><p>As always reach me on twitter for feedback and if you feel like, create a link on reddit to comment / criticize the blog post.</p></article><ul class=tags__list><li class=tag__item><a class=tag__link href=http://davidonium.github.io/tags/hugo/>hugo</a></li></ul><div class=pagination><a class=pagination__item href=http://davidonium.github.io/blog/introduction/><span class=pagination__label>Previous Post</span>
+<span class=pagination__title>Introduction</span></a></div><footer class=post__footer><div class=social-icons><a class=social-icons__link rel=me title=Twitter href=https://twitter.com/davidonium target=_blank rel=noopener><div class=social-icons__icon style=background-image:url(http://davidonium.github.io/svg/twitter.svg)></div></a><a class=social-icons__link rel=me title=GitHub href=https://github.com/Davidonium target=_blank rel=noopener><div class=social-icons__icon style=background-image:url(http://davidonium.github.io/svg/github.svg)></div></a><a class=social-icons__link rel=me title=LinkedIn href=https://www.linkedin.com/in/kot-david-hernando/ target=_blank rel=noopener><div class=social-icons__icon style=background-image:url(http://davidonium.github.io/svg/linkedin.svg)></div></a></div><p></p></footer></div></div></div></main><script src=/js/index.min.49e4d8a384357d9b445b87371863419937ede9fa77737522ffb633073aebfa44.js integrity="sha256-SeTYo4Q1fZtEW4c3GGNBmTft6fp3c3Ui/7YzBzrr+kQ=" crossorigin=anonymous></script></body></html>
